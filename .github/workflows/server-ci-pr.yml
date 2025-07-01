@@ -2,24 +2,8 @@ name: Server CI PR
 
 on:
   pull_request:
-    paths:
-      - "server/**"
-      - "e2e-tests/**"
-      - ".github/**"
 
 jobs:
-  greet:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Say Hello
-        run: echo "🎉 A new pull request has been opened!"
-
-      - name: Display PR Info
-        run: |
-          echo "PR Title: ${{ github.event.pull_request.title }}"
-          echo "PR Author: ${{ github.event.pull_request.user.login }}"
-          echo "PR Branch: ${{ github.head_ref }}"
+  pr-ci:
+    uses: ./.github/workflows/server-ci-template.yml
+    secrets: inherit

@@ -12,13 +12,14 @@ jobs:
     name: test
     runs-on: ubuntu-22.04
     steps:
-      - name: Checkout project
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - name: check env
-        run: env
+      - uses: mattermost/actions/delivery/update-commit-status@d5174b860704729f4c14ef8489ae075742bfa08a
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          repository_full_name: ${{ github.repository }}
+          commit_sha: ${{ github.event.workflow_run.head_sha }}
+          context: Server CI/Artifacts Build
+          description: Artifacts upload and build for mattermost team platform
+          status: pending
       - name: check secret
-        run: echo ${{secrets.MY_TEST_SECRET}}
-      - name: check secret 2
-        run: if [ "${{secrets.MY_TEST_SECRET}}" = "test123" ]; then echo ok; else echo not ok; fi
-      - name: check files
-        run: cat README.md
+        run: echo THIS IS THE FORK FILE
